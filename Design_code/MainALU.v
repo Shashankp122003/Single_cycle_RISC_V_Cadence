@@ -1,6 +1,6 @@
 module ALU (
-    input wire [6:0] funct3, // 3-bit function code
-    input wire [2:0] funct7, // 7-bit function code
+	input wire [6:0] funct7, // 7-bit function code
+	input wire [2:0] funct3, // 3-bit function code
     input wire [4:0] ALUop,  // 5-bit ALU operation code
     input wire [31:0] A,     // Input operand A
     input wire [31:0] B,     // Input operand B
