@@ -18,26 +18,33 @@ reg [31:0] Memory [0:31] = {
     32'hDDDDDDDD, 32'hEEEEEEEE, 32'hFFFFFFFF, 32'hDEADCAFE
 };
 
-reg [4:0] MemoryLocation; 
-integer i;
+// reg [4:0] MemoryLocation; 
+// integer i;
 
+// always @(posedge CLK or posedge RST) begin
+//     if (RST) begin
+//         Instruction <= 32'h01234567;
+//         MemoryLocation <= 5'b0; 
+//     end
+//     else if (MemRead) begin
+//      MemoryLocation = 5'b0;
+//             for (i = 0; i < 32; i = i + 1) begin
+//                 if (Memory[i] == PC) begin
+//                     MemoryLocation = i;
+//                     break;
+//                 end
+//             end
+//       MemoryLocation = MemoryLocation + 1; 
+//       Instruction = Memory[MemoryLocation];
+//     end
+// end
 always @(posedge CLK or posedge RST) begin
     if (RST) begin
         Instruction <= 32'h01234567;
-        MemoryLocation <= 5'b0; 
     end
-    else if (MemRead) begin
-     MemoryLocation = 5'b0;
-            for (i = 0; i < 32; i = i + 1) begin
-                if (Memory[i] == PC) begin
-                    MemoryLocation = i;
-                    break;
-                end
-            end
-      MemoryLocation = MemoryLocation + 1; 
-      Instruction = Memory[MemoryLocation];
+    else if(MemRead) begin
+        assign Instruction = Memory[PC];
     end
-end
 
 endmodule
 
